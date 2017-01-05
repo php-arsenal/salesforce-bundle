@@ -56,6 +56,7 @@ class RefreshWsdlCommand extends ContainerAwareCommand
             array(
                 'curl.CURLOPT_SSL_VERIFYHOST' => false,
                 'curl.CURLOPT_SSL_VERIFYPEER' => false,
+                'curl.CURLOPT_SSLVERSION' => 6,
             )
         );
 
