@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "220a3983cf404bf8d95d42afca42435f",
+    "content-hash": "ff510ea0b5d2aaa6ab480b166afa7336",
     "packages": [
         {
             "name": "comsave/soap-client",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Comsave/soap-client.git",
-                "reference": "e04076cddf7e83ad9083099c809b79baa46ba7af"
+                "url": "https://github.com/comsave/soap-client.git",
+                "reference": "38dde9fd13f3545378cae286846de4e39b8d8d9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Comsave/soap-client/zipball/e04076cddf7e83ad9083099c809b79baa46ba7af",
-                "reference": "e04076cddf7e83ad9083099c809b79baa46ba7af",
+                "url": "https://api.github.com/repos/comsave/soap-client/zipball/38dde9fd13f3545378cae286846de4e39b8d8d9a",
+                "reference": "38dde9fd13f3545378cae286846de4e39b8d8d9a",
                 "shasum": ""
             },
             "require": {
@@ -57,7 +57,7 @@
                 "soap",
                 "web services"
             ],
-            "time": "2017-07-07 09:26:51"
+            "time": "2017-07-07 09:57:30"
         },
         {
             "name": "phpforce/common",
@@ -218,9 +218,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "comsave/soap-client": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

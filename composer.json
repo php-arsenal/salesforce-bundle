@@ -14,7 +14,7 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "comsave/soap-client": "dev-master"
+        "comsave/soap-client": "*"
     },
     "suggest": {
         "guzzle/http": "For fetching the latest WSDL from Salesforce"
@@ -24,5 +24,6 @@
             "Phpforce\\SalesforceBundle": ""
         }
     },
-    "target-dir": "Phpforce/SalesforceBundle"
+    "target-dir": "Phpforce/SalesforceBundle",
+    "minimum-stability": "dev"
 }
