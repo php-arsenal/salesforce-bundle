@@ -12,13 +12,9 @@
             "homepage": "http://ddeboer.nl"
         }
     ],
-    "repositories": [{
-        "type": "vcs",
-        "url": "git@github.com:Comsave/soap-client.git"
-    }],
     "require": {
         "php": ">=5.3.0",
-        "comsave/soap-client": "*"
+        "comsave/soap-client": "dev-master"
     },
     "suggest": {
         "guzzle/http": "For fetching the latest WSDL from Salesforce"
