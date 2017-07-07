@@ -24,6 +24,5 @@
             "Phpforce\\SalesforceBundle": ""
         }
     },
-    "target-dir": "Phpforce/SalesforceBundle",
-    "minimum-stability": "dev"
+    "target-dir": "Phpforce/SalesforceBundle"
 }
