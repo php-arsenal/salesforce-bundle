@@ -23,6 +23,9 @@
             <argument>%phpforce.soap_client.username%</argument>
             <argument>%phpforce.soap_client.password%</argument>
             <argument>%phpforce.soap_client.token%</argument>
+            <argument type="collection">
+            </argument>
+            <argument>%kernel.environment%</argument>
         </service>
 
     </services>
