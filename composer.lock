@@ -53,16 +53,16 @@
         },
         {
             "name": "comsave/soap-client",
-            "version": "0.1.3",
+            "version": "0.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/comsave/soap-client.git",
-                "reference": "7304fefb076e720992a26d98188bc40f7f1b9234"
+                "reference": "94dbe2e59fde563fb3fbadfd0cd203f31ec63575"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/comsave/soap-client/zipball/7304fefb076e720992a26d98188bc40f7f1b9234",
-                "reference": "7304fefb076e720992a26d98188bc40f7f1b9234",
+                "url": "https://api.github.com/repos/comsave/soap-client/zipball/94dbe2e59fde563fb3fbadfd0cd203f31ec63575",
+                "reference": "94dbe2e59fde563fb3fbadfd0cd203f31ec63575",
                 "shasum": ""
             },
             "require": {
@@ -102,7 +102,7 @@
                 "soap",
                 "web services"
             ],
-            "time": "2017-07-10T08:52:36+00:00"
+            "time": "2017-07-11T09:21:30+00:00"
         },
         {
             "name": "psr/log",
