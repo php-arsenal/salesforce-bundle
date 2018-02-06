@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b6c5a14f6688c39a934845704b77798",
+    "content-hash": "84aa4326c9c0cb8167edc6c88e6cc584",
     "packages": [
         {
             "name": "comsave/common",
@@ -53,16 +53,16 @@
         },
         {
             "name": "comsave/soap-client",
-            "version": "0.1.4",
+            "version": "0.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/comsave/soap-client.git",
-                "reference": "94dbe2e59fde563fb3fbadfd0cd203f31ec63575"
+                "reference": "8955f0e56ae68adf2897372eedde33b7cd5a2f1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/comsave/soap-client/zipball/94dbe2e59fde563fb3fbadfd0cd203f31ec63575",
-                "reference": "94dbe2e59fde563fb3fbadfd0cd203f31ec63575",
+                "url": "https://api.github.com/repos/comsave/soap-client/zipball/8955f0e56ae68adf2897372eedde33b7cd5a2f1e",
+                "reference": "8955f0e56ae68adf2897372eedde33b7cd5a2f1e",
                 "shasum": ""
             },
             "require": {
@@ -102,7 +102,7 @@
                 "soap",
                 "web services"
             ],
-            "time": "2017-07-11T09:21:30+00:00"
+            "time": "2017-07-12T09:12:16+00:00"
         },
         {
             "name": "psr/log",
