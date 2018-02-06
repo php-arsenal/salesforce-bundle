@@ -4,25 +4,25 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b6c5a14f6688c39a934845704b77798",
+    "content-hash": "ed9d3826c475a961216c35fc1fe3bb0c",
     "packages": [
         {
             "name": "comsave/common",
-            "version": "0.1.0",
+            "version": "0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/comsave/common.git",
-                "reference": "13fc40208174f9560b1558bf595eacb64adbbdae"
+                "reference": "14fadc92de8645a3ea04d5b33e0a6dd48bf416ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/comsave/common/zipball/13fc40208174f9560b1558bf595eacb64adbbdae",
-                "reference": "13fc40208174f9560b1558bf595eacb64adbbdae",
+                "url": "https://api.github.com/repos/comsave/common/zipball/14fadc92de8645a3ea04d5b33e0a6dd48bf416ba",
+                "reference": "14fadc92de8645a3ea04d5b33e0a6dd48bf416ba",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0",
-                "symfony/event-dispatcher": "~2.1"
+                "symfony/event-dispatcher": "^4.0"
             },
             "type": "library",
             "autoload": {
@@ -49,24 +49,24 @@
                 "soap",
                 "web services"
             ],
-            "time": "2017-07-10T08:41:56+00:00"
+            "time": "2018-02-06T10:53:24+00:00"
         },
         {
             "name": "comsave/soap-client",
-            "version": "0.1.4",
+            "version": "0.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/comsave/soap-client.git",
-                "reference": "94dbe2e59fde563fb3fbadfd0cd203f31ec63575"
+                "reference": "c674415459d27b458c6f2e0490f4a7d745a053c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/comsave/soap-client/zipball/94dbe2e59fde563fb3fbadfd0cd203f31ec63575",
-                "reference": "94dbe2e59fde563fb3fbadfd0cd203f31ec63575",
+                "url": "https://api.github.com/repos/comsave/soap-client/zipball/c674415459d27b458c6f2e0490f4a7d745a053c2",
+                "reference": "c674415459d27b458c6f2e0490f4a7d745a053c2",
                 "shasum": ""
             },
             "require": {
-                "comsave/common": "~0.1.0",
+                "comsave/common": "^0.1.0",
                 "php": ">=5.3.0",
                 "psr/log": "~1.0.0"
             },
@@ -102,7 +102,7 @@
                 "soap",
                 "web services"
             ],
-            "time": "2017-07-11T09:21:30+00:00"
+            "time": "2018-02-06T10:56:49+00:00"
         },
         {
             "name": "psr/log",
@@ -153,27 +153,30 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.8.24",
+            "version": "v4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "1377400fd641d7d1935981546aaef780ecd5bf6d"
+                "reference": "74d33aac36208c4d6757807d9f598f0133a3a4eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/1377400fd641d7d1935981546aaef780ecd5bf6d",
-                "reference": "1377400fd641d7d1935981546aaef780ecd5bf6d",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/74d33aac36208c4d6757807d9f598f0133a3a4eb",
+                "reference": "74d33aac36208c4d6757807d9f598f0133a3a4eb",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.9"
+                "php": "^7.1.3"
+            },
+            "conflict": {
+                "symfony/dependency-injection": "<3.4"
             },
             "require-dev": {
                 "psr/log": "~1.0",
-                "symfony/config": "^2.0.5|~3.0.0",
-                "symfony/dependency-injection": "~2.6|~3.0.0",
-                "symfony/expression-language": "~2.6|~3.0.0",
-                "symfony/stopwatch": "~2.3|~3.0.0"
+                "symfony/config": "~3.4|~4.0",
+                "symfony/dependency-injection": "~3.4|~4.0",
+                "symfony/expression-language": "~3.4|~4.0",
+                "symfony/stopwatch": "~3.4|~4.0"
             },
             "suggest": {
                 "symfony/dependency-injection": "",
@@ -182,7 +185,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.8-dev"
+                    "dev-master": "4.0-dev"
                 }
             },
             "autoload": {
@@ -209,7 +212,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2017-06-02T07:47:27+00:00"
+            "time": "2018-01-03T07:38:00+00:00"
         }
     ],
     "packages-dev": [],
