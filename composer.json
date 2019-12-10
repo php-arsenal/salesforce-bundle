@@ -14,11 +14,6 @@
         "php": ">=7.2",
         "comsave/soap-client": "^0.1.8"
     },
-    "scripts": {
-        "run-tests": "vendor/bin/phpunit -c phpunit.xml.dist --no-coverage",
-        "run-coverage": "vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover Tests/_output/coverage.xml",
-        "run-coverage-text": "vendor/bin/phpunit -c phpunit.xml.dist --coverage-text=Tests/_output/coverage.txt && cat Tests/_output/coverage.txt"
-    },
     "authors": [
         {
             "name": "David de Boer",
