@@ -1,18 +1,25 @@
 language: php
 
 php:
-  - 7.2
   - 7.3
+  - 7.4
 
 install: composer install --no-interaction
 
-script: echo 'OK!'
-#  - composer run-coverage
+script:
+  - composer run-coverage
 
 env:
   global:
     - CC_TEST_REPORTER_ID=839d46da55fbc72fb43b154cd7c5fdd15525df4610549c23f6191e9dfb3a758a
     - SYMFONY_VERSION=^4.3
+
+matrix:
+  include:
+    - php: 7.3
+      env: SYMFONY_VERSION=^3.4
+    - php: 7.4
+      env: SYMFONY_VERSION=^3.4
 
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
