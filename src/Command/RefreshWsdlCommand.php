@@ -6,7 +6,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\ArrayInput;
-use Guzzle\Http\Client;
+use GuzzleHttp\Client;
 
 /**
  * Fetch latest WSDL from Salesforce and store it locally
@@ -43,45 +43,49 @@ class RefreshWsdlCommand extends ContainerAwareCommand
     {
         $output->writeln('Updating the WSDL file');
 
+        $this->downloadWsdl();
+
+        if (!$input->getOption('no-cache-clear')) {
+            $command = $this->getApplication()->find('cache:clear');
+
+            $arguments = array(
+                'command' => 'cache:clear',
+            );
+            $input = new ArrayInput($arguments);
+            $command->run($input, $output);
+        }
+    }
+
+    public function downloadWsdl(): void
+    {
+        /** @var \Phpforce\SoapClient\Client $client */
         $client = $this->getContainer()->get('phpforce.soap_client');
 
         // Get current session id
         $loginResult = $client->getLoginResult();
         $sessionId = $loginResult->getSessionId();
-        $instance = $loginResult->getServerInstance();
-
-        $url = sprintf('https://%s.salesforce.com', $instance);
-        $guzzle = new Client(
-            $url,
-            array(
-                'curl.CURLOPT_SSL_VERIFYHOST' => false,
-                'curl.CURLOPT_SSL_VERIFYPEER' => false,
-                'curl.CURLOPT_SSLVERSION' => 6,
-            )
-        );
 
         // type=* for enterprise WSDL
-        $request = $guzzle->get('/soap/wsdl.jsp?type=*');
-        $request->addCookie('sid', $sessionId);
-        $response = $request->send();
+        $response = (new Client())->request('GET', vsprintf('https://%s.my.salesforce.com/soap/wsdl.jsp?type=*', [
+            $loginResult->getServerInstance()
+        ]), [
+            'headers' => [
+                'Cookie' => sprintf('sid=%s', $sessionId),
+            ],
+            'curl' => [
+                CURLOPT_SSL_VERIFYHOST => false,
+                CURLOPT_SSL_VERIFYPEER => false,
+                CURLOPT_SSLVERSION => 6,
+            ]
+        ]);
 
-        $wsdl = $response->getBody();
-        $wsdlFile = $this->getContainer()
-            ->getParameter('phpforce.soap_client.wsdl');
+        $wsdlFile = $this->getContainer()->getParameter('phpforce.soap_client.wsdl');
 
-        // Write WSDL
-        file_put_contents($wsdlFile, $wsdl);
-
-        // Run clear cache command
-        if (!$input->getOption('no-cache-clear')) {
-            $command = $this->getApplication()->find('cache:clear');
-
-            $arguments = array(
-                'command' => 'cache:clear'
-            );
-            $input = new ArrayInput($arguments);
-            $command->run($input, $output);
+        if(!simplexml_load_string((string)$response->getBody())) {
+            throw new \Exception('The downloaded WSDL is invalid. ' . sprintf('`%s`', (string)$response->getBody()));
         }
+
+        file_put_contents($wsdlFile, (string)$response->getBody());
     }
 }
 
