@@ -12,7 +12,8 @@
     },
     "require": {
         "php": ">=7.2",
-        "comsave/soap-client": "0.1.13"
+        "comsave/soap-client": "^0.2.1",
+        "guzzlehttp/guzzle": "^6.0"
     },
     "require-dev": {
         "phpunit/php-code-coverage": "^6.0",
