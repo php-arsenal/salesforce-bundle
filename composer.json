@@ -29,6 +29,5 @@
             "email": "david@ddeboer.nl",
             "homepage": "http://ddeboer.nl"
         }
-    ],
-    "target-dir": "Phpforce/SalesforceBundle"
+    ]
 }
