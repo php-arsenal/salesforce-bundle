@@ -6,8 +6,8 @@
     "homepage": "https://github.com/phpforce/salesforce-bundle",
     "license": "MIT",
     "autoload": {
-        "psr-0": {
-            "Phpforce\\SalesforceBundle": "src"
+        "psr-4": {
+            "Phpforce\\SalesforceBundle\\": "src/Phpforce/SalesforceBundle"
         }
     },
     "require": {
