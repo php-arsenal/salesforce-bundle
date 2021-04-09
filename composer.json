@@ -1,5 +1,5 @@
 {
-    "name": "comsave/salesforce-bundle",
+    "name": "php-arsenal/salesforce-bundle",
     "type": "symfony-bundle",
     "description": "A Symfony2 bundle for the PHPForce Salesforce library.",
     "keywords": [ "salesforce", "crm", "soap" ],
@@ -12,7 +12,7 @@
     },
     "require": {
         "php": ">=7.2",
-        "comsave/soap-client": "^0.2.2",
+        "php-arsenal/soap-client": "^0.2.2",
         "guzzlehttp/guzzle": "^6.0"
     },
     "require-dev": {
