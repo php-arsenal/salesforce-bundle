@@ -12,14 +12,6 @@ script:
 env:
   global:
     - CC_TEST_REPORTER_ID=
-    - SYMFONY_VERSION=^4.4
-
-matrix:
-  include:
-      - php: 7.3
-        env: SYMFONY_VERSION=^5.2
-      - php: 7.4
-        env: SYMFONY_VERSION=^5.2
 
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
