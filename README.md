@@ -8,6 +8,10 @@
 
 Symfony bundle for the Salesforce SOAP client.
 
+## Installation
+
+`composer require php-arsenal/salesforce-bundle`
+
 add to your config yml:
 
 ```yaml
