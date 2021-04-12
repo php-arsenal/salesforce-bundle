@@ -1,5 +1,5 @@
 <?php
-namespace Phpforce\SalesforceBundle\Command;
+namespace PhpArsenal\SalesforceBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputOption;
@@ -21,7 +21,7 @@ class RefreshWsdlCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('phpforce:refresh-wsdl')
+            ->setName('arsenal:refresh-wsdl')
             ->setDescription('Refresh Salesforce WSDL')
             ->setHelp(
                 'Refreshing the WSDL itself requires a WSDL, so when using this'
@@ -58,8 +58,8 @@ class RefreshWsdlCommand extends ContainerAwareCommand
 
     public function downloadWsdl(): void
     {
-        /** @var \Phpforce\SoapClient\Client $client */
-        $client = $this->getContainer()->get('phpforce.soap_client');
+        /** @var \PhpArsenal\SoapClient\Client $client */
+        $client = $this->getContainer()->get('arsenal.soap_client');
 
         // Get current session id
         $loginResult = $client->getLoginResult();
@@ -79,7 +79,7 @@ class RefreshWsdlCommand extends ContainerAwareCommand
             ]
         ]);
 
-        $wsdlFile = $this->getContainer()->getParameter('phpforce.soap_client.wsdl');
+        $wsdlFile = $this->getContainer()->getParameter('arsenal.soap_client.wsdl');
 
         if(!simplexml_load_string((string)$response->getBody())) {
             throw new \Exception('The downloaded WSDL is invalid. ' . sprintf('`%s`', (string)$response->getBody()));

@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="arsenal.soap_client" class="PhpArsenal\SoapClient\Client">
+            <factory service="arsenal.soap_client.builder" method="build" />
+        </service>
+        
+        <service id="arsenal.soap_client.bulk_saver"
+                 class="PhpArsenal\SoapClient\BulkSaver">
+            <argument type="service" id="arsenal.soap_client" />
+        </service>
+
+        <service id="arsenal.soap_client.builder"
+                 class="PhpArsenal\SoapClient\ClientBuilder">
+            <argument>%arsenal.soap_client.wsdl%</argument>
+            <argument>%arsenal.soap_client.username%</argument>
+            <argument>%arsenal.soap_client.password%</argument>
+            <argument>%arsenal.soap_client.token%</argument>
+            <argument type="collection">
+            </argument>
+            <argument>%kernel.environment%</argument>
+        </service>
+
+    </services>
+
+</container>

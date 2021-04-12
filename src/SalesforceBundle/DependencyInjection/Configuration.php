@@ -1,6 +1,6 @@
 <?php
 
-namespace Phpforce\SalesforceBundle\DependencyInjection;
+namespace PhpArsenal\SalesforceBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,8 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $treeBuilder->root('phpforce_salesforce')
+        $treeBuilder
+            ->root('arsenal_salesforce')
             ->children()
                 ->arrayNode('soap_client')->isRequired()
                     ->children()

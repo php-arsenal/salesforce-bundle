@@ -1,6 +1,6 @@
 <?php
 
-namespace Phpforce\SalesforceBundle\DependencyInjection;
+namespace PhpArsenal\SalesforceBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\Reference;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class PhpforceSalesforceExtension extends Extension
+class PhpArsenalSalesforceExtension extends Extension
 {
     /**
      * {@inheritDoc}
@@ -28,12 +28,12 @@ class PhpforceSalesforceExtension extends Extension
         $loader->load('soap_client.xml');
         $loader->load('rest_client.xml');
         foreach ($config['soap_client'] as $key => $value) {
-            $container->setParameter('phpforce.soap_client.' . $key, $value);
+            $container->setParameter('arsenal.soap_client.' . $key, $value);
         }
 
         if (true == $config['soap_client']['logging']) {
-            $builder = $container->getDefinition('phpforce.soap_client.builder');
-//            $builder->addMethodCall('withLog', array(new Reference('phpforce_salesforce.logger')));
+            $builder = $container->getDefinition('arsenal.soap_client.builder');
+//            $builder->addMethodCall('withLog', array(new Reference('arsenal_salesforce.logger')));
         }
     }
 

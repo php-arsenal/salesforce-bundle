@@ -1,19 +1,24 @@
 {
     "name": "php-arsenal/salesforce-bundle",
     "type": "symfony-bundle",
-    "description": "A Symfony2 bundle for the PHPForce Salesforce library.",
+    "description": "Symfony bundle for the Salesforce SOAP client.",
     "keywords": [ "salesforce", "crm", "soap" ],
-    "homepage": "https://github.com/phpforce/salesforce-bundle",
+    "homepage": "https://github.com/php-arsenal/salesforce-bundle",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Phpforce\\SalesforceBundle\\": "src/Phpforce/SalesforceBundle"
+            "PhpArsenal\\": "src/SalesforceBundle"
+        }
+    },,
+    "autoload-dev": {
+        "psr-4": {
+            "PhpArsenal\\SalesforceBundle\\Tests\\": "tests"
         }
     },
     "require": {
         "php": ">=7.2",
-        "php-arsenal/soap-client": "^0.2.2",
-        "guzzlehttp/guzzle": "^6.0"
+        "guzzlehttp/guzzle": "^6.0",
+        "php-arsenal/salesforce-soap-client": "^0.3.0"
     },
     "require-dev": {
         "phpunit/php-code-coverage": "^6.0",
