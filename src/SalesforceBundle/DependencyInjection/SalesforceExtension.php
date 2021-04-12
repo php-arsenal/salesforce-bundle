@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\Reference;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class PhpArsenalSalesforceExtension extends Extension
+class SalesforceExtension extends Extension
 {
     /**
      * {@inheritDoc}
