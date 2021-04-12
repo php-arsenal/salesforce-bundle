@@ -7,3 +7,22 @@
 ## Introduction
 
 Symfony bundle for the Salesforce SOAP client.
+
+add to your config yml:
+
+```yaml
+arsenal_salesforce:
+   soap_client:
+       wsdl: '%kernel.root_dir%/Resources/wsdl/%env(SALESFORCE_WSDL)%'
+       username: '%env(SALESFORCE_USERNAME)%'
+       password: '%env(SALESFORCE_PASSWORD)%'
+       token: ~
+```
+
+add env vars yo your config and fill in the values
+```
+SALESFORCE_USERNAME=
+SALESFORCE_PASSWORD=
+# Your .wsdl file path
+SALESFORCE_WSDL=
+```
