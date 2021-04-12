@@ -1,27 +1,43 @@
 <?php
 namespace PhpArsenal\SalesforceBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use PhpArsenal\SoapClient\Client;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\ArrayInput;
-use GuzzleHttp\Client;
 
 /**
  * Fetch latest WSDL from Salesforce and store it locally
  *
  * @author David de Boer <david@ddeboer.nl>
  */
-class RefreshWsdlCommand extends ContainerAwareCommand
+class RefreshWsdlCommand extends Command
 {
+    /** @var Client */
+    private $soapClient;
+
+    private const COMMAND_NAME = 'arsenal:refresh-wsdl';
+
+    /**
+     * RefreshWsdlCommand constructor.
+     * @param Client $soapClient
+     */
+    public function __construct(Client $soapClient)
+    {
+        parent::__construct(self::COMMAND_NAME);
+
+        $this->soapClient = $soapClient;
+    }
+
     /**
      * {@inheritdoc}
      */
     protected function configure()
     {
         $this
-            ->setName('arsenal:refresh-wsdl')
+            ->setName(self::COMMAND_NAME)
             ->setDescription('Refresh Salesforce WSDL')
             ->setHelp(
                 'Refreshing the WSDL itself requires a WSDL, so when using this'
@@ -59,14 +75,14 @@ class RefreshWsdlCommand extends ContainerAwareCommand
     public function downloadWsdl(): void
     {
         /** @var \PhpArsenal\SoapClient\Client $client */
-        $client = $this->getContainer()->get('arsenal.soap_client');
+        $client = $this->soapClient;
 
         // Get current session id
         $loginResult = $client->getLoginResult();
         $sessionId = $loginResult->getSessionId();
 
         // type=* for enterprise WSDL
-        $response = (new Client())->request('GET', vsprintf('https://%s.my.salesforce.com/soap/wsdl.jsp?type=*', [
+        $response = (new \GuzzleHttp\Client())->request('GET', vsprintf('https://%s.my.salesforce.com/soap/wsdl.jsp?type=*', [
             $loginResult->getServerInstance()
         ]), [
             'headers' => [
@@ -81,7 +97,7 @@ class RefreshWsdlCommand extends ContainerAwareCommand
 
         $wsdlFile = $this->getContainer()->getParameter('arsenal.soap_client.wsdl');
 
-        if(!simplexml_load_string((string)$response->getBody())) {
+        if(!\simplexml_load_string((string)$response->getBody())) {
             throw new \Exception('The downloaded WSDL is invalid. ' . sprintf('`%s`', (string)$response->getBody()));
         }
 
