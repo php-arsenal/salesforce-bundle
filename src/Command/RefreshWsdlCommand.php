@@ -18,7 +18,7 @@ class RefreshWsdlCommand extends Command
     /** @var Client */
     private $soapClient;
 
-    private const COMMAND_NAME = 'arsenal:refresh-wsdl';
+    private const COMMAND_NAME = 'salesforce:wsdl:refresh';
 
     /**
      * RefreshWsdlCommand constructor.
@@ -95,7 +95,7 @@ class RefreshWsdlCommand extends Command
             ]
         ]);
 
-        $wsdlFile = $this->getContainer()->getParameter('arsenal.soap_client.wsdl');
+        $wsdlFile = $this->getContainer()->getParameter('salesforce.soap_client.wsdl');
 
         if(!\simplexml_load_string((string)$response->getBody())) {
             throw new \Exception('The downloaded WSDL is invalid. ' . sprintf('`%s`', (string)$response->getBody()));

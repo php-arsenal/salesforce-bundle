@@ -6,9 +6,9 @@
 
     <services>
 
-        <service id="arsenal_salesforce.rest_client"
+        <service id="salesforce.rest_client"
                  class="PhpArsenal\RestClient\Client">
-            <argument type="service" id="arsenal.soap_client" />
+            <argument type="service" id="salesforce.soap_client" />
         </service>
 
     </services>

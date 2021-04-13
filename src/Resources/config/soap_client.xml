@@ -6,21 +6,21 @@
 
     <services>
 
-        <service id="arsenal.soap_client" class="PhpArsenal\SoapClient\Client">
-            <factory service="arsenal.soap_client.builder" method="build" />
+        <service id="salesforce.soap_client" class="PhpArsenal\SoapClient\Client">
+            <factory service="salesforce.soap_client.builder" method="build" />
         </service>
         
-        <service id="arsenal.soap_client.bulk_saver"
+        <service id="salesforce.soap_client.bulk_saver"
                  class="PhpArsenal\SoapClient\BulkSaver">
-            <argument type="service" id="arsenal.soap_client" />
+            <argument type="service" id="salesforce.soap_client" />
         </service>
 
-        <service id="arsenal.soap_client.builder"
+        <service id="salesforce.soap_client.builder"
                  class="PhpArsenal\SoapClient\ClientBuilder">
-            <argument>%arsenal.soap_client.wsdl%</argument>
-            <argument>%arsenal.soap_client.username%</argument>
-            <argument>%arsenal.soap_client.password%</argument>
-            <argument>%arsenal.soap_client.token%</argument>
+            <argument>%salesforce.soap_client.wsdl%</argument>
+            <argument>%salesforce.soap_client.username%</argument>
+            <argument>%salesforce.soap_client.password%</argument>
+            <argument>%salesforce.soap_client.token%</argument>
             <argument type="collection">
             </argument>
             <argument>%kernel.environment%</argument>
