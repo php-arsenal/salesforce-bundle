@@ -4,3 +4,4 @@ composer.lock
 
 tests/_output/*
 !tests/_output/.gitignore
+.phpunit.result.cache

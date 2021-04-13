@@ -17,17 +17,27 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder('arsenal_salesforce');
+        $treeBuilder = new TreeBuilder('arsenal');
         $treeBuilder
             ->getRootNode()
             ->children()
-                ->arrayNode('soap_client')->isRequired()
+                ->arrayNode('salesforce_soap_client')->isRequired()
                     ->children()
-                        ->scalarNode('wsdl')->isRequired()->end()
-                        ->scalarNode('username')->isRequired()->end()
-                        ->scalarNode('password')->isRequired()->end()
-                        ->scalarNode('token')->isRequired()->end()
-                        ->scalarNode('logging')->defaultValue('%kernel.debug%')->end()
+                        ->scalarNode('wsdl')
+                            ->isRequired()
+                        ->end()
+                        ->scalarNode('username')
+                            ->isRequired()
+                        ->end()
+                        ->scalarNode('password')
+                            ->isRequired()
+                        ->end()
+                        ->scalarNode('token')
+                            ->isRequired()
+                        ->end()
+                        ->scalarNode('logging')
+                            ->defaultValue('%kernel.debug%')
+                        ->end()
                     ->end()
                 ->end()
             ->end();
