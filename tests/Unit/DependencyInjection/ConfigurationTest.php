@@ -16,12 +16,10 @@ class ConfigurationTest extends TestCase
     public function testConfiguration(): void
     {
         $inputOutput = [
-            'salesforce_soap_client' => [
-                'wsdl' => '%kernel.project_dir%/Resources/wsdl/%env(SALESFORCE_WSDL)%',
-                'username' => '%env(SALESFORCE_USERNAME)%',
-                'password' => '%env(SALESFORCE_PASSWORD)%',
-                'token' => '~',
-            ]
+            'wsdl' => '%kernel.project_dir%/Resources/wsdl/%env(SALESFORCE_WSDL)%',
+            'username' => '%env(SALESFORCE_USERNAME)%',
+            'password' => '%env(SALESFORCE_PASSWORD)%',
+            'token' => '~',
         ];
 
         $configuration = new Configuration();
@@ -30,9 +28,7 @@ class ConfigurationTest extends TestCase
         $resultConfig = $configNode->finalize($configNode->normalize($inputOutput));
 
         $this->assertEquals(array_merge_recursive($inputOutput, [
-            'salesforce_soap_client' => [
-                'logging' => '%kernel.debug%',
-            ]
+            'logging' => '%kernel.debug%',
         ]), $resultConfig);
     }
 }
