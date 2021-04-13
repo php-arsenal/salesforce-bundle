@@ -27,11 +27,11 @@ class SalesforceExtension extends Extension
         $loader->load('soap_client.xml');
         $loader->load('rest_client.xml');
         foreach ($processedConfiguration['soap_client'] as $key => $value) {
-            $container->setParameter('arsenal.soap_client.' . $key, $value);
+            $container->setParameter('arsenal_salesforce.soap_client.' . $key, $value);
         }
 
         if (true == $processedConfiguration['soap_client']['logging']) {
-            $builder = $container->getDefinition('arsenal.soap_client.builder');
+            $builder = $container->getDefinition('arsenal_salesforce.soap_client.builder');
 //            $builder->addMethodCall('withLog', array(new Reference('arsenal_salesforce.logger')));
         }
     }
