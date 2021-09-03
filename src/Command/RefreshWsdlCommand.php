@@ -1,4 +1,5 @@
 <?php
+
 namespace PhpArsenal\SalesforceBundle\Command;
 
 use PhpArsenal\SoapClient\Client;
@@ -10,34 +11,25 @@ use Symfony\Component\Console\Input\ArrayInput;
 
 /**
  * Fetch latest WSDL from Salesforce and store it locally
- *
- * @author David de Boer <david@ddeboer.nl>
  */
 class RefreshWsdlCommand extends Command
 {
-    /** @var Client */
-    private $soapClient;
+    protected static $defaultName = 'salesforce:wsdl:refresh';
 
-    private const COMMAND_NAME = 'salesforce:wsdl:refresh';
-
-    /**
-     * RefreshWsdlCommand constructor.
-     * @param Client $soapClient
-     */
-    public function __construct(Client $soapClient)
+    public function __construct(
+        private Client $soapClient,
+        private string $wsdlPath
+    )
     {
-        parent::__construct(self::COMMAND_NAME);
-
-        $this->soapClient = $soapClient;
+        parent::__construct();
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this
-            ->setName(self::COMMAND_NAME)
             ->setDescription('Refresh Salesforce WSDL')
             ->setHelp(
                 'Refreshing the WSDL itself requires a WSDL, so when using this'
@@ -55,7 +47,7 @@ class RefreshWsdlCommand extends Command
     /**
      * {@inheritdoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('Updating the WSDL file');
 
@@ -63,13 +55,10 @@ class RefreshWsdlCommand extends Command
 
         if (!$input->getOption('no-cache-clear')) {
             $command = $this->getApplication()->find('cache:clear');
-
-            $arguments = array(
-                'command' => 'cache:clear',
-            );
-            $input = new ArrayInput($arguments);
-            $command->run($input, $output);
+            $command->run(new ArrayInput(['command' => 'cache:clear']), $output);
         }
+
+        return Command::SUCCESS;
     }
 
     public function downloadWsdl(): void
@@ -95,13 +84,10 @@ class RefreshWsdlCommand extends Command
             ]
         ]);
 
-        $wsdlFile = $this->getContainer()->getParameter('salesforce.soap_client.wsdl');
-
-        if(!\simplexml_load_string((string)$response->getBody())) {
+        if (!\simplexml_load_string((string)$response->getBody())) {
             throw new \Exception('The downloaded WSDL is invalid. ' . sprintf('`%s`', (string)$response->getBody()));
         }
 
-        file_put_contents($wsdlFile, (string)$response->getBody());
+        file_put_contents($this->wsdlPath, (string)$response->getBody());
     }
 }
-

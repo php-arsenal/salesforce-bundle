@@ -1,0 +1,4 @@
+services:
+  PhpArsenal\SalesforceBundle\Command\RefreshWsdlCommand:
+    autoconfigure: true
+    arguments: ['@salesforce.soap_client', '%salesforce.soap_client.wsdl%']

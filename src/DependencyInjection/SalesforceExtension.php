@@ -22,10 +22,15 @@ class SalesforceExtension extends Extension
         $configuration = new Configuration();
         $processedConfiguration = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $fileLocator = new FileLocator(__DIR__.'/../Resources/config');
 
-        $loader->load('soap_client.xml');
-        $loader->load('rest_client.xml');
+        $xmlLoader = new Loader\XmlFileLoader($container, $fileLocator);
+        $xmlLoader->load('soap_client.xml');
+        $xmlLoader->load('rest_client.xml');
+
+        $yamlLoader = new Loader\YamlFileLoader($container, $fileLocator);
+        $yamlLoader->load('services.yaml');
+
         foreach ($processedConfiguration as $key => $value) {
             $container->setParameter('salesforce.soap_client.' . $key, $value);
         }
