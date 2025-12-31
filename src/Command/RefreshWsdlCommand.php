@@ -3,6 +3,7 @@
 namespace PhpArsenal\SalesforceBundle\Command;
 
 use PhpArsenal\SoapClient\Client;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
@@ -12,10 +13,12 @@ use Symfony\Component\Console\Input\ArrayInput;
 /**
  * Fetch latest WSDL from Salesforce and store it locally
  */
+#[AsCommand(
+    name: 'salesforce:wsdl:refresh',
+    description: 'Refresh Salesforce WSDL'
+)]
 class RefreshWsdlCommand extends Command
 {
-    protected static $defaultName = 'salesforce:wsdl:refresh';
-
     public function __construct(
         private Client $soapClient,
         private string $wsdlPath
@@ -30,7 +33,6 @@ class RefreshWsdlCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setDescription('Refresh Salesforce WSDL')
             ->setHelp(
                 'Refreshing the WSDL itself requires a WSDL, so when using this'
                 . 'command for the first time, please download the WSDL '
