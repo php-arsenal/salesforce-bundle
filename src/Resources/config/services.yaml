@@ -1,4 +1,30 @@
 services:
+  salesforce.soap_client.builder:
+    class: PhpArsenal\SoapClient\ClientBuilder
+    arguments:
+      - '%salesforce.soap_client.wsdl%'
+      - '%salesforce.soap_client.username%'
+      - '%salesforce.soap_client.password%'
+      - '%salesforce.soap_client.token%'
+      - []
+      - '%kernel.environment%'
+
+  salesforce.soap_client:
+    class: PhpArsenal\SoapClient\Client
+    factory: ['@salesforce.soap_client.builder', 'build']
+
+  salesforce.soap_client.bulk_saver:
+    class: PhpArsenal\SoapClient\BulkSaver
+    arguments:
+      - '@salesforce.soap_client'
+
+  salesforce.rest_client:
+    class: PhpArsenal\RestClient\Client
+    arguments:
+      - '@salesforce.soap_client'
+
   PhpArsenal\SalesforceBundle\Command\RefreshWsdlCommand:
     autoconfigure: true
-    arguments: ['@salesforce.soap_client', '%salesforce.soap_client.wsdl%']
+    arguments:
+      - '@salesforce.soap_client'
+      - '%salesforce.soap_client.wsdl%'

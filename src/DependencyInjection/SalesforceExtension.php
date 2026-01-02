@@ -24,10 +24,6 @@ class SalesforceExtension extends Extension
 
         $fileLocator = new FileLocator(__DIR__.'/../Resources/config');
 
-        $xmlLoader = new Loader\XmlFileLoader($container, $fileLocator);
-        $xmlLoader->load('soap_client.xml');
-        $xmlLoader->load('rest_client.xml');
-
         $yamlLoader = new Loader\YamlFileLoader($container, $fileLocator);
         $yamlLoader->load('services.yaml');
 
